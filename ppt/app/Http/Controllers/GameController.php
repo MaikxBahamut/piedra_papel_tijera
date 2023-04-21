@@ -6,59 +6,33 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+   static public function comprobarResultado(string $movUser, string $movCpu) : string
+   {
+    if ($movUser == $movCpu) return "draw";
+    if ($movUser == "scissors"){
+        if ($movCpu == "rock") return "lose";
+        return "win";
     }
+    if ($movUser == "rock") {
+        if ($movCpu == "paper") return "lose";
+        return "win";
+    }
+    if ($movUser == "paper") {
+        if ($movCpu == "scissors") return "lose";
+        return "win";
+    }
+   }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+   static public function partida(int $idUsuario, string $movUser)
+   {
+        $movimientos = ["scissors","rock","paper"];
+        $movCpu = $movimientos[rand(0,2)];
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $resultado = self::comprobarResultado($movUser,$movCpu);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        
+        return ["result" => $resultado, "movCPU" => $movCpu, "movUser" => $movUser];
+   }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

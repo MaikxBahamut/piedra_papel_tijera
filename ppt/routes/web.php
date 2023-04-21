@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -20,3 +21,5 @@ Route::get('/', function () {
 });
 
 Route::post('new-user',[UserController::class, 'store']);
+Route::put('update-user/{id}',[UserController::class, 'update']);
+Route::get('partida/{idUsuario}/{movUser}',[GameController::class, 'partida']);

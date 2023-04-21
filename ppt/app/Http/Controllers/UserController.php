@@ -59,6 +59,26 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $resultado = $request->resultado;
+        $user = User::findOrFail($id);
+        $result = [];
+
+        switch($resultado)
+        {
+            case "win" : 
+                $win = $user->win;
+                $result = $user->update(["win"=> $win+1]);
+                break;
+            case "lose" : 
+                $lose = $user->lose;
+                $result = $user->update(["lose"=> $lose+1]);
+                break;
+            case "draw" :
+                $draw = $user->draw;
+                $result = $user->update(["draw"=> $draw+1]);
+        }
+
+        return $result;
     }
 
     /**
