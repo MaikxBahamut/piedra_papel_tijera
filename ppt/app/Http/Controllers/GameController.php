@@ -33,6 +33,8 @@ class GameController extends Controller
         
         return ["result" => $resultado, "movCPU" => $movCpu, "movUser" => $movUser];
    }
-
+   static public function vista(){
+    return view('choose');
+   }
 
 }

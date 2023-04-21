@@ -23,3 +23,5 @@ Route::get('/', function () {
 Route::post('new-user',[UserController::class, 'store']);
 Route::put('update-user/{id}',[UserController::class, 'update']);
 Route::get('partida/{idUsuario}/{movUser}',[GameController::class, 'partida']);
+Route::get('elige',[GameController::class, 'vista']);
+Route::get('users',[UserController::class, 'index']);
