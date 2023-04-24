@@ -21,8 +21,9 @@ Route::get('/', function () {
 });
 
 Route::post('new-user',[UserController::class, 'store']);
-Route::put('update-user/{id}',[UserController::class, 'update'])->name('update-user');
+//Route::put('update-user/{id}',[UserController::class, 'update'])->name('update-user');
 Route::get('partida/{idUsuario}',[GameController::class, 'partida']);
 Route::get('choose',[GameController::class, 'vista']);
 Route::get('users',[UserController::class, 'index']);
+Route::get('clasificacion',[UserController::class, 'clasificacion']);
 

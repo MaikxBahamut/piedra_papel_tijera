@@ -4,9 +4,8 @@
     <h1>La CPU ha escogido {{$movCpu}}</h1>
     <h1>El resultado ha sido {{$resultado}}</h1>
 
-    <form action="{{ route('update-user', ['id' => $user->id, 'resultado' => $resultado]) }}" method="POST">
+    <form method="get" action="{{ url('choose') }}">
         @csrf
-        @method('PUT')
-        <button type="submit">Guardar resultados</button>
+        <button type="submit" name="user" value="{{$user->id}}">Volver a jugar</button>
     </form>
 </body>

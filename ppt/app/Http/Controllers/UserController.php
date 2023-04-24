@@ -57,11 +57,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    static public function update(string $resultado, User $user)
     {
         //
-        $resultado = $request->resultado;
-        $user = User::findOrFail($id);
         $result = [];
 
         switch($resultado)
@@ -91,12 +89,29 @@ class UserController extends Controller
     }
 
     public function seleccionarUsuario(Request $request)
-{
-    // Obtiene el ID del usuario seleccionado del formulario
-    $userId = $request->input('user');
+    {
+        // Obtiene el ID del usuario seleccionado del formulario
+        $userId = $request->input('user');
 
-    // Redirige a la vista de partida con el ID del usuario seleccionado
-    return redirect()->route('choose', ['userId' => $userId]);
-}
+        // Redirige a la vista de partida con el ID del usuario seleccionado
+        return redirect()->route('choose', ['userId' => $userId]);
+    }
+
+    static public function comprobarUsuario(int $id,string $pssw)
+    {
+        $usuario = User::findOrFail($id);
+
+        if (hash("sha256",$pssw) == $usuario->password){
+            return $usuario;
+        }else {
+            return null;
+        }
+    }
+
+    public function clasificacion()
+    {
+        $usuarios = User::all()->sortByDesc('win');
+        return view ('clasificacion',["users" => $usuarios]);
+    }
 
 }
