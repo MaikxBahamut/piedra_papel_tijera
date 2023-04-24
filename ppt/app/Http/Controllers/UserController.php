@@ -89,4 +89,14 @@ class UserController extends Controller
     {
         //
     }
+
+    public function seleccionarUsuario(Request $request)
+{
+    // Obtiene el ID del usuario seleccionado del formulario
+    $userId = $request->input('user');
+
+    // Redirige a la vista de partida con el ID del usuario seleccionado
+    return redirect()->route('choose', ['userId' => $userId]);
+}
+
 }

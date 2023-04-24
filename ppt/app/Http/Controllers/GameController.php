@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\user;
 
 class GameController extends Controller
 {
@@ -23,18 +24,21 @@ class GameController extends Controller
     }
    }
 
-   static public function partida(int $idUsuario, string $movUser)
+   static public function partida(Request $request, int $idUsuario)
    {
         $movimientos = ["scissors","rock","paper"];
         $movCpu = $movimientos[rand(0,2)];
+        $movUser=$request->move;
+        $user = User::findOrFail($idUsuario);
 
         $resultado = self::comprobarResultado($movUser,$movCpu);
 
 
-        return ["result" => $resultado, "movCPU" => $movCpu, "movUser" => $movUser];
+        return view('resultado',["resultado" => $resultado, "movCpu" => $movCpu, "movUser" => $movUser, "user"=> $user]);
    }
-   static public function vista(){
-    return view('choose');
+   static public function vista(Request $request){
+    $user = User::findOrFail($request->user);
+    return view('choose',['usuario'=>$user]);
    }
 
 }
