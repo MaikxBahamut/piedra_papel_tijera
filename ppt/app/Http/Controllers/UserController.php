@@ -31,11 +31,12 @@ class UserController extends Controller
     {
          $user = User::create([
             'name' => $request->name,
+            'password'=> hash("sha256",$request->ctr),
             'win' => 0,
             'lose' => 0,
             'draw' => 0
         ]);
-        return $user;
+        return view('guardar', ['user' => $user]);
     }
 
     /**
@@ -113,5 +114,7 @@ class UserController extends Controller
         $usuarios = User::all()->sortByDesc('win');
         return view ('clasificacion',["users" => $usuarios]);
     }
+
+   
 
 }
