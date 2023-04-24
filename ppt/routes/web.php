@@ -30,10 +30,7 @@ Route::get('registro', function () {
     return view('registro');
 });
 
-Route::post('guardar', function () {
-    return view('guardar');
-});
-
+Route::post('guardar',[UserController::class, 'store']);
 
 
 
