@@ -30,7 +30,7 @@ class GameController extends Controller
 
         $resultado = self::comprobarResultado($movUser,$movCpu);
 
-        
+
         return ["result" => $resultado, "movCPU" => $movCpu, "movUser" => $movUser];
    }
    static public function vista(){
