@@ -31,7 +31,7 @@ class UserController extends Controller
     {
          $user = User::create([
             'name' => $request->name,
-            'password'=> hash("sha256",$request->ctr),
+            'password'=> hash("sha256",$request->password),
             'win' => 0,
             'lose' => 0,
             'draw' => 0

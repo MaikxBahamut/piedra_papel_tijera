@@ -8,4 +8,9 @@
         @csrf
         <button type="submit" name="user" value="{{$user->id}}">Volver a jugar</button>
     </form>
+    <form method="get" action="{{ url('clasificacion') }}">
+    @csrf
+    <button type="submit" >CLASIFICACION</button>
+  
+</form>
 </body>
